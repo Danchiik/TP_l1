@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "Keeper.h"
 
 //Keeper::
@@ -10,12 +11,9 @@ Keeper::Keeper()
 	strcpy(fileName, "preset_file.txt");
 }
 
-Keeper::Keeper(int s, Factory** l, char* fp)
+Keeper::Keeper(int s, Factory** l, char* fp): size(s), list(l), fileName(fp)
 {
 	printf("Keeper(int s, Factory** l, char* fp) constructor called\n");
-	size = s;
-	list = l;
-	strcpy(fileName, fp);
 }
 
 Keeper::~Keeper()

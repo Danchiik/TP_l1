@@ -7,7 +7,7 @@ class Keeper
 	int size;
 	Factory** list;
 
-	char fileName[250];
+	char* fileName;
 
 public:
 
@@ -26,4 +26,7 @@ public:
 
 	void save();
 	void load();
+
+	void saveSettings();
+
 };
