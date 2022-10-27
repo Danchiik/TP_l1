@@ -12,9 +12,7 @@ class Keeper
 public:
 
 	Keeper();
-	Keeper(int, void*);
-	Keeper(Keeper&);
-	
+	Keeper(int, Factory**, char*);
 	~Keeper();
 
 	void add();
@@ -26,4 +24,6 @@ public:
 	void setfileName(char*);
 	char* getfileName();
 
+	void save();
+	void load();
 };
