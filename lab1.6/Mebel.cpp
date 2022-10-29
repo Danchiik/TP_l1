@@ -4,6 +4,10 @@
 Mebel::Mebel()
 {
 	printf("Mebel() constructor called\n");
+	type = new char[2];
+	color = new char[2];
+	material = new char[2];
+
 	strcpy(type, "");
 	h = 0;
 	w = 0;
@@ -16,6 +20,10 @@ Mebel::Mebel()
 Mebel::Mebel(Mebel& obj)
 {
 	printf("Mebel(Mebel& obj) constructor called\n");
+	type = new char[2];
+	color = new char[2];
+	material = new char[2];
+
 	strcpy(type, obj.getType());
 	h = obj.getH();
 	w = obj.getW();
@@ -120,10 +128,9 @@ void Mebel::setPrice(int v)
 
 void Mebel::print()
 {
-	printf("%s\n", type);
-	printf("%s\n", color);
-	printf("%s\n", material);
-	printf("%d\n", h);
-	printf("%d\n", w);
-	printf("%d\n", d);
+	printf("type - %s\n", type);
+	printf("color - %s\n", color);
+	printf("material -%s\n", material);
+	printf("HxWxD - %dx%dx%d\n", h, w, d);
+
 }

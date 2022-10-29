@@ -8,6 +8,9 @@ class Keeper
 	Factory** list;
 
 	char* fileName;
+	void addMebel();
+	void addWorker() {};
+	void addCar() {};
 
 public:
 
@@ -15,7 +18,10 @@ public:
 	Keeper(int, Factory**, char*);
 	~Keeper();
 
-	void add();
+	int add();
+	
+	void operator+(Factory*);
+	
 	void edit();
 	void remove();
 
