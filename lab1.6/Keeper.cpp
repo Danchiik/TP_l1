@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "Keeper.h"
 #include "Mebel.h"
+#include "Car.h"
 
 //Keeper::
 
@@ -22,7 +23,7 @@ Keeper::~Keeper()
 {
 	printf("Keeper() destructor called\n");
 	for (int i = 0; i < size; i++)
-		delete []list;
+		delete list[i];
 	
 	size = 0;
 	strcpy(fileName, "preset_file.txt");
@@ -60,6 +61,13 @@ void Keeper::addMebel()
 	Factory* mebel = new Mebel;
 	*this + mebel;
 	printf("new mebel added\n");
+}
+
+void Keeper::addCar()
+{
+	Factory* car = new Car;
+	*this + car;
+	printf("new car added\n");
 }
 
 

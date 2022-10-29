@@ -42,12 +42,12 @@ Mebel::Mebel(char* t, int H, int W, int D, char* c, char* m, int pr): type(t), h
 Mebel::~Mebel()
 {
 	printf("~Mebel() destructor called\n");
-	strcpy(type, "");
+	delete type;
 	h = 0;
 	w = 0;
 	d = 0;
-	strcpy(color, "");
-	strcpy(material, "");
+	delete color;
+	delete material;
 	price = 0;
 }
 
@@ -89,10 +89,6 @@ int Mebel::getPrice()
 }
 
 
-void Mebel::setType(char* v)
-{
-	strcpy(type, v);
-}
 
 void Mebel::setH(int v)
 {
@@ -109,13 +105,21 @@ void Mebel::setD(int v)
 	d = v;
 }
 
+void Mebel::setType(char* v)
+{
+	delete type; type = new char[strlen(v) + 1];
+	strcpy(type, v);
+}
+
 void Mebel::setColor(char* v)
 {
+	delete color; color = new char[strlen(v) + 1];
 	strcpy(color, v);
 }
 
 void Mebel::setMaterial(char* v)
 {
+	delete material; material = new char[strlen(v) + 1];
 	strcpy(material, v);
 }
 
@@ -125,12 +129,11 @@ void Mebel::setPrice(int v)
 }
 
 
-
 void Mebel::print()
 {
 	printf("type - %s\n", type);
 	printf("color - %s\n", color);
-	printf("material -%s\n", material);
+	printf("material - %s\n", material);
 	printf("HxWxD - %dx%dx%d\n", h, w, d);
 
 }
