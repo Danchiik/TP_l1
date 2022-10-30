@@ -9,6 +9,7 @@ public:
 	Factory() ;
 	~Factory();
 	virtual void print() {};
+	virtual void fileSave(FILE*, int) {};
 	virtual void edit() {};
 
 

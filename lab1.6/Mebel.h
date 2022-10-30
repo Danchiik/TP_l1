@@ -38,5 +38,6 @@ public:
 
 	void edit() override;
 	void print() override;
+	void fileSave(FILE*, int) override;
 
 };

@@ -4,12 +4,12 @@
 Mebel::Mebel()
 {
 	printf("Mebel() constructor called\n");
-	setType((char*)"");
+	setType((char*)"--");
 	setH(0); 
 	setW(0); 
 	setD(0); 
-	setColor((char*)"");
-	setMaterial((char*) "");
+	setColor((char*)"--");
+	setMaterial((char*) "--");
 	setPrice(0);
 }
 
@@ -128,6 +128,17 @@ void Mebel::print()
 	printf("color - %s\n", color);
 	printf("material - %s\n", material);
 	printf("HxWxD - %dx%dx%d\n", h, w, d);
+	printf("price - %d\n", price);
+}
+
+void Mebel::fileSave(FILE* fp, int id)
+{
+	fprintf(fp, "%dm\n", id);
+	fprintf(fp, "%d %s\n", strlen(type), type);
+	fprintf(fp, "%d %s\n", strlen(color), color);
+	fprintf(fp, "%d %s\n", strlen(material), material);
+	fprintf(fp, "%dx%dx%d\n", h, w, d);
+	fprintf(fp, "%d\n", price);
 }
 
 

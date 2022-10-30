@@ -8,11 +8,17 @@ class Keeper
 	Factory** list;
 
 	char* fileName;
+
+	int addMebel(FILE* f);
+	int addWorker(FILE* f);
+	int addCar(FILE* f);
+
 	void addMebel();
 	void addWorker();
-	void addCar() ;
+	void addCar();
 
 	void del(int);
+
 
 public:
 
@@ -29,8 +35,8 @@ public:
 
 	void printAll();
 
-	void setfileName(char*);
-	char* getfileName();
+	void setFileName(char*);
+	char* getFileName();
 
 	void save();
 	void load();

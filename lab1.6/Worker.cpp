@@ -12,16 +12,13 @@
 Worker::Worker()
 {
 	printf("Worker() constructor called\n");
-	FIO = new char[2];
-	title = new char[2];
-	adress = new char[2];
-	phone = new char[2];
 
-	strcpy(FIO, "");
-	strcpy(title, "");
-	strcpy(adress, "");
-	strcpy(phone, "");
-	payment = 0;
+	setFIO((char*)"-fio-");
+	setTitle((char*)"-title-");
+	setAdress((char*)"-address-");
+	setPhone((char*)"-phone-");
+	setPayment(0);
+
 }
 
 Worker::Worker(Worker& obj)
@@ -118,6 +115,16 @@ void Worker::print()
 	printf("adress - %s\n", adress);
 	printf("phone - %s\n", phone);
 	printf("payment - %d\n", payment);
+}
+
+void Worker::fileSave(FILE* fp, int id)
+{
+	fprintf(fp, "%dw\n", id);
+	fprintf(fp, "%d %s\n", strlen(FIO), FIO);
+	fprintf(fp, "%d %s\n", strlen(title), title);
+	fprintf(fp, "%d %s\n", strlen(adress), adress);
+	fprintf(fp, "%d %s\n", strlen(phone), phone);
+	fprintf(fp, "%d\n", payment);
 }
 
 void Worker::edit()

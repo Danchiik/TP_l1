@@ -4,9 +4,9 @@
 Car::Car()
 {
 	printf("Car() constructor called\n");
-	setBrand((char*)"");
-	setModel((char*)"");
-	setNumber((char*)"");
+	setBrand((char*)"-brand-");
+	setModel((char*)"-model-");
+	setNumber((char*)"-number-");
 }
 
 Car::Car(Car& obj)
@@ -78,6 +78,13 @@ void Car::print()
 	printf("number - %s\n", number);
 }
 
+void Car::fileSave(FILE* fp, int id)
+{
+	fprintf(fp, "%dc\n", id);
+	fprintf(fp, "%d %s\n", strlen(brand), brand);
+	fprintf(fp, "%d %s\n", strlen(model), model);
+	fprintf(fp, "%d %s\n", strlen(number), number);
+}
 
 void Car::edit()
 {

@@ -4,13 +4,6 @@
 
 class Worker : public Factory
 {
-	char* type;
-
-	char* color;
-	char* material;
-	int price;
-
-
 	char* FIO;
 	char* title;
 	int payment;
@@ -39,5 +32,5 @@ public:
 
 	void edit() override;
 	void print() override;
-
+	void fileSave(FILE*, int) override;
 };

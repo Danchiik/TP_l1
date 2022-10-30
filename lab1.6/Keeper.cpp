@@ -4,15 +4,13 @@
 #include "Car.h"
 #include "Worker.h"
 
-//Keeper::
 
 Keeper::Keeper()
 {
 	printf("Keeper() constructor called\n");
 	size = 0;
 	list = nullptr;
-	fileName = new char[strlen("preset_file.txt") + 1];
-	strcpy(fileName, "preset_file.txt");
+	setFileName((char*)"preset_file.txt");
 }
 
 Keeper::Keeper(int s, Factory** l, char* fp): size(s), list(l), fileName(fp)
@@ -25,11 +23,135 @@ Keeper::~Keeper()
 	printf("Keeper() destructor called\n");
 	for (int i = 0; i < size; i++)
 		delete list[i];
-	
 	size = 0;
-	strcpy(fileName, "preset_file.txt");
 }
 
+
+void Keeper::setFileName(char* fn)
+{
+	fileName = new char[strlen(fn) + 1];
+	strcpy(fileName, fn);
+}
+
+char* Keeper::getFileName()
+{
+	return fileName;
+}
+
+void Keeper::saveSettings()
+{
+	int c = 0;
+	printf("\n\tsettings menu\n-1 back\n1 see current file name\n2 edit file name\n");
+	while (1)
+	{
+		takeInt(&c);
+		switch (c)
+		{
+		case -1:
+			return;
+
+		case 1:
+			printf("file name: %s\n", getFileName());
+			break;
+
+		case 2:
+		{
+			printf("enter new file name value\n");
+			char* s = takeS();
+			setFileName(s);
+			printf("new value set\n");
+		}
+		break;
+
+		default:
+			printf("invalid input\n");
+		}
+	}
+
+}
+
+void Keeper::save()
+{
+	FILE* fpout = fopen(getFileName(), "w");
+	if (fpout == NULL)
+	{
+		printf("couldn't open file for writing\n");
+		return;
+	}
+
+	fprintf(fpout, "%d\n", size);
+
+	for (int i = 0; i < size; i++)
+	{
+		list[i]->fileSave(fpout, i);
+	}
+
+
+	fclose(fpout);
+}
+
+
+void Keeper::load()
+{
+	FILE* fpin = fopen(getFileName(), "r");
+	if (fpin == NULL)
+	{
+		printf("couldn't open file for writing\n");
+		return;
+	}
+	int n = 0;
+	if (fscanf(fpin, "%d\n", &n) != 1)
+		throw "data corrupted\n";
+
+	if (n <= 0)
+		throw "data corrupted\n";
+	int id;
+	char c;
+	for (int i = 0; i < n; i++)
+	{
+		if(fscanf(fpin, "%d%c\n", &id, &c)!= 2)
+			throw "data corrupted\n";
+
+		if (id != i)
+		{
+			fclose(fpin);
+			throw "data corrupted\n";
+		}
+		switch (c)
+		{
+		case 'm':
+			if (addMebel(fpin) == -1)
+			{
+				fclose(fpin);
+				throw "data corrupted\n";
+			}
+			break;
+
+			case 'w':if (addWorker(fpin) == -1)
+			{
+				fclose(fpin);
+				throw "data corrupted\n";
+			}
+				break;
+
+			case 'c':if (addCar(fpin) == -1)
+			{
+				fclose(fpin);
+				throw "data corrupted\n";
+			}
+				break;
+
+			default:
+			{
+				fclose(fpin);
+				throw "data corrupted\n"; 
+			}
+		}
+
+	}
+
+	fclose(fpin);
+}
 
 
 void Keeper::printAll()
@@ -55,8 +177,58 @@ void Keeper::operator+(Factory* obj)
 	}
 
 	created[size - 1] = obj;
-	list = created;
-	
+	list = created;	
+}
+
+int Keeper::addMebel(FILE* f)
+{
+	char* t, *c, *m; int h, w, d, p;
+	int len = 0;
+	if (fscanf(f, "%d ", &len) != 1) return -1; t = new char[len + 1]; fgets(t, len + 1, f);
+	if (fscanf(f, "%d ", &len) != 1) return -1;  c = new char[len + 1]; fgets(c, len+1, f);
+	if (fscanf(f, "%d ", &len) != 1) return -1; m = new char[len + 1]; fgets(m, len+1, f);
+	if (fscanf(f, "%dx%dx%d\n", &h, &w, &d) != 3)
+		return -1;
+	if (fscanf(f, "%d\n", &p) != 1)
+		return -1;
+
+	Factory* mebel = new Mebel(t, h, w, d, c, m, p);
+	*this + mebel;
+
+	return 0;
+}
+
+int Keeper::addCar(FILE* f)
+{
+	char* br,* m,* n; 
+	int len = 0;
+	if (fscanf(f, "%d ", &len) != 1) return -1; br = new char[len + 1]; fgets(br, len + 1, f);
+	if (fscanf(f, "%d ", &len) != 1) return -1;  m = new char[len + 1]; fgets(m, len + 1, f);
+	if (fscanf(f, "%d ", &len) != 1) return -1; n = new char[len + 1]; fgets(n, len + 1, f);
+
+	Factory* car = new Car(br, m, n);
+	*this + car;
+
+	return 0;
+}
+
+int Keeper::addWorker(FILE* f)
+{
+
+	char *fio, *t, *adr, *ph; int  p;
+	int len = 0;
+	if (fscanf(f, "%d ", &len) != 1) return -1; fio = new char[len + 1]; fgets(fio, len + 1, f);
+	if (fscanf(f, "%d ", &len) != 1) return -1;  t = new char[len + 1]; fgets(t, len + 1, f);
+	if (fscanf(f, "%d ", &len) != 1) return -1; adr = new char[len + 1]; fgets(adr, len + 1, f);
+	if (fscanf(f, "%d ", &len) != 1) return -1; ph = new char[len + 1]; fgets(ph, len + 1, f);
+
+	if (fscanf(f, "%d\n", &p) != 1)
+		return -1;
+
+	Factory* worker = new Worker(fio, t, adr, ph, p);
+	*this + worker;
+
+	return 0;
 }
 
 
@@ -73,6 +245,7 @@ void Keeper::addCar()
 	*this + car;
 	printf("new car added\n");
 }
+
 void Keeper::addWorker()
 {
 	Factory* worker = new Worker;
@@ -85,7 +258,7 @@ int Keeper::add()
 {
 	int typeToAdd = 0;
 	printf("add menu\n-1 back\n1 mebel\n2 worker\n3 car\n");
-	while (typeToAdd == 0)
+	while (1)
 	{
 		takeInt(&typeToAdd);
 		switch (typeToAdd)

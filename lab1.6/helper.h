@@ -2,6 +2,6 @@
 #include "stdio.h"
 #include "string.h"
 
-int takeInt(void* _x);
+int takeInt(int* _x);
 
 char* takeS();

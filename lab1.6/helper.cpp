@@ -2,7 +2,7 @@
 
 #include "helper.h"
 
-int takeInt(void* _x)
+int takeInt(int* _x)
 {
 	while (1)
 	{

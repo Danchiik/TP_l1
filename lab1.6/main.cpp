@@ -12,8 +12,10 @@ void menuList()
 	printf("2 add\n");
 	printf("3 edit\n");
 	printf("4 remove\n");
+	printf("5 save\n");
+	printf("6 load\n");
 
-
+	printf("99 file settings\n");
 }
 
 int menu()
@@ -45,6 +47,15 @@ int menu()
 			break;
 		case 4:
 			keep.remove();
+			break;
+		case 5:
+			keep.save();
+			break;
+		case 6:
+			keep.load();
+			break;
+		case 99:
+			keep.saveSettings();
 			break;
 
 		default:
