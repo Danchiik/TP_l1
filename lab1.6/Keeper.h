@@ -12,6 +12,8 @@ class Keeper
 	void addWorker();
 	void addCar() ;
 
+	void del(int);
+
 public:
 
 	Keeper();

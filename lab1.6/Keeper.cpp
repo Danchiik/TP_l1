@@ -111,7 +111,6 @@ int Keeper::add()
 }
 
 
-
 void Keeper::edit()
 {
 	if (size == 0)
@@ -136,6 +135,50 @@ void Keeper::edit()
 				printf("invalid input\n");
 			else
 				list[c-1]->edit();
+
+		}
+	}
+}
+
+void Keeper::del(int id)
+{
+	delete list[id];
+	for (int i = id; i < size - 1; i++)
+	{
+		list[i] = list[i + 1];
+	}
+	size--;
+}
+
+void Keeper::remove()
+{
+	if (size == 0)
+	{
+		printf("list is empty\n");
+		return;
+	}
+
+	int c = 0;
+
+	while (1)
+	{
+		printf("remove keeper menu\n-1 back\n1 - %d remove\n", size);
+		takeInt(&c);
+		switch (c)
+		{
+		case -1:
+			return;
+
+		default:
+			if (c < 1 || c > size)
+				printf("invalid input\n");
+			else
+			{
+				del(c - 1);
+				printf("removed\n");
+				if (size == 0)
+					return;
+			}
 
 		}
 	}

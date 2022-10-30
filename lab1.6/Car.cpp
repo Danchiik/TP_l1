@@ -87,7 +87,7 @@ void Car::edit()
 	char* s; int v;
 	while (1)
 	{
-		printf("edit car menu\n");
+		printf("\n\tedit car menu\n");
 		printf("-1 back\n\tedit\n1 brand\n2 model\n3 number\n");
 		takeInt(&c);
 		switch (c)

@@ -128,7 +128,7 @@ void Worker::edit()
 	char* s; int v;
 	while (1)
 	{
-		printf("edit mebel menu\n");
+		printf("\n\tedit worker menu\n");
 		printf("-1 back\n\tedit\n1 FIO\n2 title\n3 adress\n4 phone number\n5 payment\n");
 		takeInt(&c);
 		switch (c)

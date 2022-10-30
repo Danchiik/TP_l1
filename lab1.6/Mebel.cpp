@@ -139,7 +139,7 @@ void Mebel::edit()
 	char* s; int v;
 	while (1)
 	{
-		printf("edit mebel menu\n");
+		printf("\n\tedit mebel menu\n");
 		printf("-1 back\n\tedit\n1 type\n2 color\n3 material\n4 h\n5 w\n6 d\n");
 		takeInt(&c);
 		switch (c)
