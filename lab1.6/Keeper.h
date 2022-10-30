@@ -9,7 +9,7 @@ class Keeper
 
 	char* fileName;
 	void addMebel();
-	void addWorker() {};
+	void addWorker();
 	void addCar() ;
 
 public:

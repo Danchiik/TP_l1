@@ -2,6 +2,7 @@
 #include "Keeper.h"
 #include "Mebel.h"
 #include "Car.h"
+#include "Worker.h"
 
 //Keeper::
 
@@ -35,7 +36,10 @@ void Keeper::printAll()
 {
 	printf("All list items:\n");
 	for (int i = 0; i < size; i++)
+	{
+		printf("\n\t%d\t", i+1);
 		list[i]->print();
+	}
 	if (size == 0)
 		printf("none found\n");
 }
@@ -68,6 +72,12 @@ void Keeper::addCar()
 	Factory* car = new Car;
 	*this + car;
 	printf("new car added\n");
+}
+void Keeper::addWorker()
+{
+	Factory* worker = new Worker;
+	*this + worker;
+	printf("new worker added\n");
 }
 
 

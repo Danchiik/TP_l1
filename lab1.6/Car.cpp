@@ -4,26 +4,18 @@
 Car::Car()
 {
 	printf("Car() constructor called\n");
-	brand = new char[2];
-	model = new char[2];
-	number = new char[2];
-
-	strcpy(brand, "");
-	strcpy(model, "");
-	strcpy(number, "");
+	setBrand((char*)"");
+	setModel((char*)"");
+	setNumber((char*)"");
 }
 
 Car::Car(Car& obj)
 {
 	printf("Car(Car& obj) constructor called\n");
-	brand = new char[2];
-	model = new char[2];
-	number = new char[2];
 
-	strcpy(brand, obj.getBrand());
-	strcpy(model, obj.getModel());
-	strcpy(number, obj.getNumber());
-
+	setBrand(obj.getBrand());
+	setModel(obj.getModel());
+	setNumber(obj.getNumber());
 }
 
 
@@ -80,6 +72,7 @@ void Car::setNumber(char* v)
 
 void Car::print()
 {
+	printf("CAR \n");
 	printf("brand - %s\n", brand);
 	printf("model - %s\n", model);
 	printf("number - %s\n", number);
