@@ -17,3 +17,12 @@ int takeInt(void* _x)
 		if (getchar());
 	}
 }
+
+char* takeS()
+{
+	char buf[1200];
+	printf(":= ");
+	gets_s(buf);
+		
+	return buf;
+}

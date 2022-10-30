@@ -36,7 +36,7 @@ public:
 	void setPrice(int);
 
 
-	void edit() override {};
+	void edit() override;
 	void print() override;
 
 };

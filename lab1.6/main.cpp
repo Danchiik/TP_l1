@@ -9,6 +9,7 @@ void menuList()
 	printf("-1 exit\n");
 	printf("1 print to screen\n");
 	printf("2 add\n");
+	printf("3 edit\n");
 
 
 }
@@ -34,9 +35,12 @@ int menu()
 		case 2:
 			keep.add();
 			break;
+		case 3:
+			keep.edit();
+			break;
 
-			default:
-				printf("unknwon command inputed\n"); menuList();
+		default:
+			printf("unknwon command inputed\n"); menuList();
 		}
 	}
 

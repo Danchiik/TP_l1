@@ -3,3 +3,5 @@
 #include "string.h"
 
 int takeInt(void* _x);
+
+char* takeS();

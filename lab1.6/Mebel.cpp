@@ -129,3 +129,66 @@ void Mebel::print()
 	printf("material - %s\n", material);
 	printf("HxWxD - %dx%dx%d\n", h, w, d);
 }
+
+
+void Mebel::edit()
+{
+	print();
+	
+	int c = 0;
+	char* s; int v;
+	while (1)
+	{
+		printf("edit mebel menu\n");
+		printf("-1 back\n\tedit\n1 type\n2 color\n3 material\n4 h\n5 w\n6 d\n");
+		takeInt(&c);
+		switch (c)
+		{
+		case -1:
+			return;
+
+		case 1:
+			printf("enter new type value\n");
+			s = takeS();
+			setType(s);
+			break;
+
+		case 2:
+			printf("enter new color value\n");
+			s = takeS();
+			setColor(s);
+			break;
+
+		case 3:
+			printf("enter new material value\n");
+			s = takeS();
+			setMaterial(s);
+			break;
+
+		case 4:
+			printf("enter new H value\n");
+			v = 0;
+			takeInt(&v);
+			setH(v);
+			break;
+
+		case 5:
+			printf("enter new w value\n");
+			v = 0;
+			takeInt(&v);
+			setW(v);
+			break;
+
+		case 6:
+			printf("enter new d value\n");
+			v = 0;
+			takeInt(&v);
+			setD(v);
+			break;
+
+		default:
+			printf("invalid input\n");
+
+		}
+	}
+}

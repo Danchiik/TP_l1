@@ -112,4 +112,32 @@ int Keeper::add()
 
 
 
+void Keeper::edit()
+{
+	if (size == 0)
+	{	
+		printf("list is empty\n");
+		return;
+	}
+
+	int c = 0;
+	
+	while (1)
+	{
+		printf("edit keeper menu\n-1 back\n1 - %d edit\n", size);
+		takeInt(&c);
+		switch (c)
+		{
+		case -1:
+			return;
+
+		default:
+			if (c < 1 || c > size)
+				printf("invalid input\n");
+			else
+				list[c-1]->edit();
+
+		}
+	}
+}
 
