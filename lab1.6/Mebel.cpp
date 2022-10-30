@@ -151,7 +151,7 @@ void Mebel::edit()
 	while (1)
 	{
 		printf("\n\tedit mebel menu\n");
-		printf("-1 back\n\tedit\n1 type\n2 color\n3 material\n4 h\n5 w\n6 d\n");
+		printf("-1 back\n\tedit\n1 type\n2 color\n3 material\n4 h\n5 w\n6 d\n7 price\n");
 		takeInt(&c);
 		switch (c)
 		{
@@ -196,7 +196,12 @@ void Mebel::edit()
 			takeInt(&v);
 			setD(v);
 			break;
-
+		case 7:
+			printf("enter new price value\n");
+			v = 0;
+			takeInt(&v);
+			setPrice(v);
+			break;
 		default:
 			printf("invalid input\n");
 
