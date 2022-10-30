@@ -52,7 +52,13 @@ int menu()
 			keep.save();
 			break;
 		case 6:
-			keep.load();
+			try {
+				keep.load();
+			}
+			catch (char* m)
+			{
+				printf("\tEXEPTION: %s\n", m);
+			}
 			break;
 		case 99:
 			keep.saveSettings();

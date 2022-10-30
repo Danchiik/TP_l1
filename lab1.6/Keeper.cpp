@@ -101,21 +101,21 @@ void Keeper::load()
 	}
 	int n = 0;
 	if (fscanf(fpin, "%d\n", &n) != 1)
-		throw "data corrupted\n";
+		throw (char*)"data corrupted\n";
 
 	if (n <= 0)
-		throw "data corrupted\n";
+		throw (char*)"data corrupted\n";
 	int id;
 	char c;
 	for (int i = 0; i < n; i++)
 	{
 		if(fscanf(fpin, "%d%c\n", &id, &c)!= 2)
-			throw "data corrupted\n";
+			throw (char*)"data corrupted\n";
 
 		if (id != i)
 		{
 			fclose(fpin);
-			throw "data corrupted\n";
+			throw (char*)"data corrupted\n";
 		}
 		switch (c)
 		{
@@ -123,28 +123,28 @@ void Keeper::load()
 			if (addMebel(fpin) == -1)
 			{
 				fclose(fpin);
-				throw "data corrupted\n";
+				throw (char*)"data corrupted\n";
 			}
 			break;
 
 			case 'w':if (addWorker(fpin) == -1)
 			{
 				fclose(fpin);
-				throw "data corrupted\n";
+				throw (char*)"data corrupted\n";
 			}
 				break;
 
 			case 'c':if (addCar(fpin) == -1)
 			{
 				fclose(fpin);
-				throw "data corrupted\n";
+				throw (char*)"data corrupted\n";
 			}
 				break;
 
 			default:
 			{
 				fclose(fpin);
-				throw "data corrupted\n"; 
+				throw (char*)"data corrupted\n";
 			}
 		}
 
