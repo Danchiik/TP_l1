@@ -72,10 +72,16 @@ void Keeper::saveSettings()
 
 void Keeper::save()
 {
+	if (size == 0)
+	{
+		printf("list is empty\n");
+		return;
+	}
+
 	FILE* fpout = fopen(getFileName(), "w");
 	if (fpout == NULL)
 	{
-		printf("couldn't open file for writing\n");
+		printf("couldn't open file\n");
 		return;
 	}
 
@@ -96,7 +102,7 @@ void Keeper::load()
 	FILE* fpin = fopen(getFileName(), "r");
 	if (fpin == NULL)
 	{
-		printf("couldn't open file for writing\n");
+		printf("couldn't open file\n");
 		return;
 	}
 	int n = 0;
