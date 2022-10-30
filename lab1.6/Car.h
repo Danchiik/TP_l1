@@ -23,7 +23,7 @@ public:
 	void setModel(char*);
 	void setNumber(char*);
 
-	void edit() override {};
+	void edit() override;
 	void print() override;
 
 };

@@ -77,3 +77,45 @@ void Car::print()
 	printf("model - %s\n", model);
 	printf("number - %s\n", number);
 }
+
+
+void Car::edit()
+{
+	print();
+
+	int c = 0;
+	char* s; int v;
+	while (1)
+	{
+		printf("edit car menu\n");
+		printf("-1 back\n\tedit\n1 brand\n2 model\n3 number\n");
+		takeInt(&c);
+		switch (c)
+		{
+		case -1:
+			return;
+
+		case 1:
+			printf("enter new brand value\n");
+			s = takeS();
+			setBrand(s);
+			break;
+
+		case 2:
+			printf("enter new model value\n");
+			s = takeS();
+			setModel(s);
+			break;
+
+		case 3:
+			printf("enter new number value\n");
+			s = takeS();
+			setNumber(s);
+			break;
+
+		default:
+			printf("invalid input\n");
+
+		}
+	}
+}

@@ -117,5 +117,59 @@ void Worker::print()
 	printf("title - %s\n", title);
 	printf("adress - %s\n", adress);
 	printf("phone - %s\n", phone);
-	printf("payment - %s\n", payment);
+	printf("payment - %d\n", payment);
+}
+
+void Worker::edit()
+{
+	print();
+
+	int c = 0;
+	char* s; int v;
+	while (1)
+	{
+		printf("edit mebel menu\n");
+		printf("-1 back\n\tedit\n1 FIO\n2 title\n3 adress\n4 phone number\n5 payment\n");
+		takeInt(&c);
+		switch (c)
+		{
+		case -1:
+			return;
+
+		case 1:
+			printf("enter new type value\n");
+			s = takeS();
+			setFIO(s);
+			break;
+
+		case 2:
+			printf("enter new job title\n");
+			s = takeS();
+			setTitle(s);
+			break;
+
+		case 3:
+			printf("enter new adress\n");
+			s = takeS();
+			setAdress(s);
+			break;
+
+		case 4:
+			printf("enter new phone number\n");
+			s = takeS();
+			setPhone(s);
+			break;
+
+		case 5:
+			printf("enter new payment value\n");
+			v = 0;
+			takeInt(&v);
+			setPayment(v);
+			break;
+
+		default:
+			printf("invalid input\n");
+
+		}
+	}
 }
